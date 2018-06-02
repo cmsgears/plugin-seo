@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2015 VulpineCode Technologies Pvt. Ltd.
  */
 
-namespace cmsgears\seo\meta\forms;
+namespace cmsgears\seo\forms;
 
 // CMG Imports
 use cmsgears\core\common\models\forms\DataModel;
