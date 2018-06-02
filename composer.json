@@ -10,7 +10,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"cmsgears\\seo\\meta\\": ""
+			"cmsgears\\seo\\": ""
 		}
 	},
     "require": {
