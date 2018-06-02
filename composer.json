@@ -1,0 +1,19 @@
+{
+	"name": "cmsgears/plugin-seo",
+	"description": "The Seo Plugin for CMSGears. It can be used to add seo meta tags on site header.",
+	"homepage": "http://www.cmsgears.org",
+	"type": "package",
+	"keywords": [ "yii2", "cmsgears", "plugin", "social meta" ],
+	"license": "GPL-3.0-or-later",
+	"support": {
+		"resources": "https://www.cmsgears.org"
+	},
+	"autoload": {
+		"psr-4": {
+			"cmsgears\\seo\\meta\\": ""
+		}
+	},
+    "require": {
+        "cmsgears/module-core": "*"
+    }
+}
