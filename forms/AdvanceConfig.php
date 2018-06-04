@@ -17,7 +17,7 @@ use cmsgears\core\common\models\forms\DataModel;
  *
  * @since 1.0.0
  */
-class GeoConfig extends DataModel {
+class AdvanceConfig extends DataModel {
 
 	// Variables ---------------------------------------------------
 
@@ -27,13 +27,18 @@ class GeoConfig extends DataModel {
 
 	// Public -----------------
 
-	public $region;
+	public $classification;
 
-	public $placename;
+	public $language;
 
-	public $position;
+	public $googlebot;
 
-	public $icbm;
+	public $searchEngine;
+	public $ownerContent;
+	public $copyright;
+	public $expires;
+	public $rating;
+	public $revisitAfter;
 
 	// Protected --------------
 
@@ -62,7 +67,8 @@ class GeoConfig extends DataModel {
 	public function rules() {
 
 		$rules = [
-			[ [ 'region', 'placename', 'position', 'icbm' ], 'safe' ]
+			[ [ 'classification', 'language', 'googlebot', 'searchEngine', 'ownerContent', 
+				'copyright', 'expires', 'rating', 'revisitAfter' ], 'safe' ]
 		];
 
 		return $rules;
@@ -71,10 +77,15 @@ class GeoConfig extends DataModel {
 	public function attributeLabels() {
 
 		return [
-			'region' => 'region',
-			'placename' => 'placename',
-			'position' => 'position',
-			'icbm' => 'icbm'
+			'classification' => 'classification',
+			'language' => 'language',
+			'googlebot' => 'googlebot',
+			'searchEngine' => 'searchEngine',
+			'ownerContent' => 'ownerContent',
+			'copyright' => 'copyright',
+			'expires' => 'expires',
+			'rating' => 'rating',
+			'revisitAfter' => 'revisitAfter'
 		];
 	}
 
