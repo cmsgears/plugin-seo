@@ -235,18 +235,20 @@ class SeoUtil {
 
 		$metaContent = '';
 
-		$geoData =   $params[ 'seoGeo' ];
+		$geoData =   $params[ 'seoGeo' ] ?? null;
 
-		$placename	= filter_var( $geoData->placename, FILTER_SANITIZE_STRING );
-		$region		= filter_var( $geoData->region, FILTER_SANITIZE_STRING );
-		$position	= filter_var( $geoData->position, FILTER_SANITIZE_STRING );
-		$icbm		= filter_var( $geoData->icbm, FILTER_SANITIZE_STRING );
+		if( isset( $geoData ) ) {
 		
-		$metaContent .= $placename ? "<meta name=\"geo.placename\" content=\"$placename\" />" : '';
-		$metaContent .= $region ? "<meta name=\"geo.region\" content=\"$region\" />" : '';
-		$metaContent .= $position ? "<meta name=\"geo.position\" content=\"$position\" />" : '';
-		$metaContent .= $icbm ? "<meta name=\"ICBM\" content=\"$icbm\" />" : '';
+			$placename	= filter_var( $geoData->placename, FILTER_SANITIZE_STRING );
+			$region		= filter_var( $geoData->region, FILTER_SANITIZE_STRING );
+			$position	= filter_var( $geoData->position, FILTER_SANITIZE_STRING );
+			$icbm		= filter_var( $geoData->icbm, FILTER_SANITIZE_STRING );
 
+			$metaContent .= $placename ? "<meta name=\"geo.placename\" content=\"$placename\" />" : '';
+			$metaContent .= $region ? "<meta name=\"geo.region\" content=\"$region\" />" : '';
+			$metaContent .= $position ? "<meta name=\"geo.position\" content=\"$position\" />" : '';
+			$metaContent .= $icbm ? "<meta name=\"ICBM\" content=\"$icbm\" />" : '';
+		}
 		return $metaContent;
 	}
 
