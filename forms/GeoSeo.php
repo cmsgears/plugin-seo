@@ -9,15 +9,12 @@
 
 namespace cmsgears\seo\forms;
 
-// CMG Imports
-use cmsgears\core\common\models\forms\DataModel;
-
 /**
- * NotificationConfig form allows admin to configure notification templates.
+ * GeoSeo form allows admin to configure Geo SEO.
  *
  * @since 1.0.0
  */
-class AdvanceConfig extends DataModel {
+class GeoSeo extends \cmsgears\core\common\models\forms\DataModel {
 
 	// Variables ---------------------------------------------------
 
@@ -27,18 +24,13 @@ class AdvanceConfig extends DataModel {
 
 	// Public -----------------
 
-	public $classification;
+	public $region;
 
-	public $language;
+	public $placename;
 
-	public $googlebot;
+	public $position;
 
-	public $searchEngine;
-	public $ownerContent;
-	public $copyright;
-	public $expires;
-	public $rating;
-	public $revisitAfter;
+	public $icbm;
 
 	// Protected --------------
 
@@ -67,8 +59,7 @@ class AdvanceConfig extends DataModel {
 	public function rules() {
 
 		$rules = [
-			[ [ 'classification', 'language', 'googlebot', 'searchEngine', 'ownerContent', 
-				'copyright', 'expires', 'rating', 'revisitAfter' ], 'safe' ]
+			[ [ 'region', 'placename', 'position', 'icbm' ], 'safe' ]
 		];
 
 		return $rules;
@@ -77,15 +68,10 @@ class AdvanceConfig extends DataModel {
 	public function attributeLabels() {
 
 		return [
-			'classification' => 'classification',
-			'language' => 'language',
-			'googlebot' => 'googlebot',
-			'searchEngine' => 'searchEngine',
-			'ownerContent' => 'ownerContent',
-			'copyright' => 'copyright',
-			'expires' => 'expires',
-			'rating' => 'rating',
-			'revisitAfter' => 'revisitAfter'
+			'region' => 'region',
+			'placename' => 'placename',
+			'position' => 'position',
+			'icbm' => 'icbm'
 		];
 	}
 
@@ -95,6 +81,6 @@ class AdvanceConfig extends DataModel {
 
 	// Validators ----------------------------
 
-	// NotificationConfig --------------------
+	// GeoSeo --------------------------------
 
 }

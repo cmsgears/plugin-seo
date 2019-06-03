@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2015 VulpineCode Technologies Pvt. Ltd.
  */
 
-namespace cmsgears\seo\common\config;
+namespace cmsgears\seo\config;
 
 /**
  * NotifyGlobal defines the global constants and variables available for notify and dependent modules.
