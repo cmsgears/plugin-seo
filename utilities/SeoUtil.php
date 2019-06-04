@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2015 VulpineCode Technologies Pvt. Ltd.
  */
 
-namespace cmsgears\seo\common\utilities;
+namespace cmsgears\seo\utilities;
 
 // Yii Imports
 use Yii;
