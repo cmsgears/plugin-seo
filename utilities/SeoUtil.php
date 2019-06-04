@@ -13,7 +13,7 @@ namespace cmsgears\seo\utilities;
 use Yii;
 // CMG Imports
 
-use cmsgears\seo\common\config\SeoConfig;
+use cmsgears\seo\config\SeoConfig;
 
 
 /**
