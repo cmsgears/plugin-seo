@@ -1,6 +1,6 @@
 <?php
 $model		= $plugin->model;
-$formClass	= $plugin->dataModelClass;
+$formClass	= $plugin->pluginModelClass;
 $apixBase	= $plugin->apixBase;
 
 $form = new $formClass( [ 'model' => $model ] );

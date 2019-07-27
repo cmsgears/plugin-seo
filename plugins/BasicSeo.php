@@ -27,7 +27,7 @@ class BasicSeo extends \cmsgears\core\common\base\Plugin {
 
 	public $adminViewsPath = '@cmsgears/plugin-seo/plugins/views/admin';
 
-	public $dataModelClass = 'cmsgears\seo\forms\BasicSeo';
+	public $pluginModelClass = 'cmsgears\seo\forms\BasicSeo';
 
 	// Protected --------------
 
