@@ -57,7 +57,7 @@ class BasicSeo extends \cmsgears\core\common\models\forms\DataModel {
 
 		if( isset( $this->model ) ) {
 
-			$seoData = $this->model->getDataKeyMeta( CoreGlobal::DATA_SEO );
+			$seoData = $this->model->getDataPluginMeta( CoreGlobal::DATA_SEO );
 
 			if( isset( $seoData ) ) {
 

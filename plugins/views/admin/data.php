@@ -17,7 +17,7 @@ $themeIncludes = Yii::getAlias( '@themes/admin/views/includes' );
 	<div class="box-content" cmt-app="core" cmt-controller="default" cmt-action="default" action="<?= "$apixBase/plugin?id=$model->id" ?>" cmt-keep>
 		<?php include "$themeIncludes/components/spinners/form.php"; ?>
 		<input type="hidden" name="pluginId" value="<?= $plugin->id ?>" />
-		<input type="hidden" name="formType" value="data" />
+		<input type="hidden" name="formType" value="plugins" />
 		<div class="row">
 			<div class="col col2">
 				<div class="form-group">
@@ -52,7 +52,12 @@ $themeIncludes = Yii::getAlias( '@themes/admin/views/includes' );
 		</div>
 		<div class="filler-height"></div>
 		<div class="row">
-			<div class="col col1 align align-right">
+			<div class="col col2">
+				<div class="message success"></div>
+				<div class="message warning"></div>
+				<div class="message error"></div>
+			</div>
+			<div class="col col2 align align-right">
 				<input class="frm-element-medium cmt-click" type="button" value="Update" />
 			</div>
 		</div>
