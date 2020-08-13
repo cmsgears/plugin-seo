@@ -7,7 +7,7 @@ $form = new $formClass( [ 'model' => $model ] );
 
 $className = $form->getClassName();
 
-$themeIncludes = Yii::getAlias( '@themes/admin/views/includes' );
+$themeTemplates = Yii::getAlias( '@themes/admin/views/templates' );
 ?>
 <div class="filler-height"></div>
 <div class="box box-crud">
@@ -15,7 +15,7 @@ $themeIncludes = Yii::getAlias( '@themes/admin/views/includes' );
 		<div class="box-header-title">Basic SEO</div>
 	</div>
 	<div class="box-content" cmt-app="core" cmt-controller="default" cmt-action="default" action="<?= "$apixBase/plugin?id=$model->id" ?>" cmt-keep>
-		<?php include "$themeIncludes/components/spinners/form.php"; ?>
+		<?php include "$themeTemplates/components/spinners/form.php"; ?>
 		<input type="hidden" name="pluginId" value="<?= $plugin->id ?>" />
 		<input type="hidden" name="formType" value="plugins" />
 		<div class="row">

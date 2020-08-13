@@ -10,20 +10,17 @@
 namespace cmsgears\seo\config;
 
 /**
- * NotifyGlobal defines the global constants and variables available for notify and dependent modules.
+ * SeoGlobal defines the global constants and variables available for SEO plugin.
  *
  * @since 1.0.0
  */
-class SeoConfig {
+class SeoGlobal {
 
 	// System Sites ---------------------------------------------------
 
 	// System Pages ---------------------------------------------------
 
 	// Grouping by type ------------------------------------------------
-
-	const CONFIG_GEO_SEO	= 'geo-seo';
-	const CONFIG_ADVANCE	= 'advance-seo';
 
 	// Templates -------------------------------------------------------
 
@@ -34,6 +31,10 @@ class SeoConfig {
 	// Permissions -----------------------------------------------------
 
 	// Model Attributes ------------------------------------------------
+
+	// Model SEO
+	const DATA_SEO_GEO		= 'seo-geo';
+	const DATA_SEO_ADVANCED = 'seo-advanced';
 
 	// Default Maps ----------------------------------------------------
 
