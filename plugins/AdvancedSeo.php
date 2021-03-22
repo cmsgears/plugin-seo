@@ -10,14 +10,14 @@
 namespace cmsgears\seo\plugins;
 
 // CMG Imports
-use cmsgears\core\common\config\CoreGlobal;
+use cmsgears\seo\config\SeoGlobal;
 
 /**
- * The BasicSeo plugin provides options to manage the basic SEO fields.
+ * The AdvancedSeo plugin provides options to manage the Advanced SEO fields.
  *
  * @since 1.0.0
  */
-class BasicSeo extends \cmsgears\core\common\base\Plugin {
+class AdvancedSeo extends \cmsgears\core\common\base\Plugin {
 
 	// Variables ---------------------------------------------------
 
@@ -25,9 +25,9 @@ class BasicSeo extends \cmsgears\core\common\base\Plugin {
 
 	// Public -----------------
 
-	public $adminViewsPath = '@cmsgears/plugin-seo/plugins/views/admin/basic';
+	public $adminViewsPath = '@cmsgears/plugin-seo/plugins/views/admin/advanced';
 
-	public $pluginModelClass = 'cmsgears\seo\forms\BasicSeo';
+	public $pluginModelClass = 'cmsgears\seo\forms\AdvancedSeo';
 
 	// Protected --------------
 
@@ -45,13 +45,13 @@ class BasicSeo extends \cmsgears\core\common\base\Plugin {
 
 	// CMG parent classes --------------------
 
-	// BasicSeo ------------------------------
+	// AdvancedSeo ---------------------------
 
 	public function init() {
 
 		parent::init();
 
-		$this->key = CoreGlobal::DATA_SEO;
+		$this->key = SeoGlobal::DATA_SEO_ADVANCED;
 	}
 
 }

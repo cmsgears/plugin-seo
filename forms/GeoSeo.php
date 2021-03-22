@@ -9,6 +9,13 @@
 
 namespace cmsgears\seo\forms;
 
+// Yii Imports
+use Yii;
+use yii\helpers\ArrayHelper;
+
+// CMG Imports
+use cmsgears\seo\config\SeoGlobal;
+
 /**
  * GeoSeo form allows admin to configure Geo SEO.
  *
@@ -24,12 +31,11 @@ class GeoSeo extends \cmsgears\core\common\models\forms\DataModel {
 
 	// Public -----------------
 
-	public $region;
+	public $model;
 
 	public $placename;
-
 	public $position;
-
+	public $region;
 	public $icbm;
 
 	// Protected --------------
@@ -46,6 +52,48 @@ class GeoSeo extends \cmsgears\core\common\models\forms\DataModel {
 
 	// Constructor and Initialisation ------------------------------
 
+	public function init() {
+
+		if( isset( $this->model ) ) {
+
+			$seoData = $this->model->getDataPluginMeta( SeoGlobal::DATA_SEO_GEO );
+
+			if( isset( $seoData ) ) {
+
+				foreach( $seoData as $key => $value ) {
+
+					switch( $key ) {
+
+						case 'placename': {
+
+							$this->placename = $value;
+
+							break;
+						}
+						case 'position': {
+
+							$this->position = $value;
+
+							break;
+						}
+						case 'region': {
+
+							$this->region = $value;
+
+							break;
+						}
+						case 'icbm': {
+
+							$this->icbm = $value;
+
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+
 	// Instance methods --------------------------------------------
 
 	// Yii interfaces ------------------------
@@ -56,22 +104,38 @@ class GeoSeo extends \cmsgears\core\common\models\forms\DataModel {
 
 	// yii\base\Model ---------
 
+	/**
+	 * @inheritdoc
+	 */
 	public function rules() {
 
+		// Model Rules
 		$rules = [
-			[ [ 'region', 'placename', 'position', 'icbm' ], 'safe' ]
+			// Text Limit
+			[ [ 'placename', 'position', 'region', 'icbm' ], 'string', 'min' => 1, 'max' => Yii::$app->core->largeText ]
 		];
+
+		// Trim Text
+		if( Yii::$app->core->trimFieldValue ) {
+
+			$trim[] = [ [ 'placename', 'position', 'region', 'icbm' ], 'filter', 'filter' => 'trim', 'skipOnArray' => true ];
+
+			return ArrayHelper::merge( $trim, $rules );
+		}
 
 		return $rules;
 	}
 
+	/**
+	 * @inheritdoc
+	 */
 	public function attributeLabels() {
 
 		return [
-			'region' => 'region',
-			'placename' => 'placename',
-			'position' => 'position',
-			'icbm' => 'icbm'
+			'placename' => 'Placename',
+			'position' => 'Position',
+			'region' => 'Region',
+			'icbm' => 'ICBM'
 		];
 	}
 
@@ -82,5 +146,15 @@ class GeoSeo extends \cmsgears\core\common\models\forms\DataModel {
 	// Validators ----------------------------
 
 	// GeoSeo --------------------------------
+
+	public function getData() {
+
+		$data = [
+			'placename' => $this->placename, 'position' => $this->position,
+			'region' => $this->region, 'icbm' => $this->icbm
+		];
+
+		return $data;
+	}
 
 }

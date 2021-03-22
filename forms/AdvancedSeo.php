@@ -9,6 +9,13 @@
 
 namespace cmsgears\seo\forms;
 
+// Yii Imports
+use Yii;
+use yii\helpers\ArrayHelper;
+
+// CMG Imports
+use cmsgears\seo\config\SeoGlobal;
+
 /**
  * AdvancedSeo form allows admin to configure advanced SEO.
  *
@@ -23,6 +30,8 @@ class AdvancedSeo extends \cmsgears\core\common\models\forms\DataModel {
 	// Constants --------------
 
 	// Public -----------------
+
+	public $model;
 
 	public $classification;
 
@@ -51,6 +60,78 @@ class AdvancedSeo extends \cmsgears\core\common\models\forms\DataModel {
 
 	// Constructor and Initialisation ------------------------------
 
+	public function init() {
+
+		if( isset( $this->model ) ) {
+
+			$seoData = $this->model->getDataPluginMeta( SeoGlobal::DATA_SEO_ADVANCED );
+
+			if( isset( $seoData ) ) {
+
+				foreach( $seoData as $key => $value ) {
+
+					switch( $key ) {
+
+						case 'classification': {
+
+							$this->classification = $value;
+
+							break;
+						}
+						case 'language': {
+
+							$this->language = $value;
+
+							break;
+						}
+						case 'googlebot': {
+
+							$this->googlebot = $value;
+
+							break;
+						}
+						case 'searchEngine': {
+
+							$this->searchEngine = $value;
+
+							break;
+						}
+						case 'ownerContent': {
+
+							$this->ownerContent = $value;
+
+							break;
+						}
+						case 'copyright': {
+
+							$this->copyright = $value;
+
+							break;
+						}
+						case 'expires': {
+
+							$this->expires = $value;
+
+							break;
+						}
+						case 'rating': {
+
+							$this->rating = $value;
+
+							break;
+						}
+						case 'revisitAfter': {
+
+							$this->revisitAfter = $value;
+
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+
 	// Instance methods --------------------------------------------
 
 	// Yii interfaces ------------------------
@@ -61,12 +142,25 @@ class AdvancedSeo extends \cmsgears\core\common\models\forms\DataModel {
 
 	// yii\base\Model ---------
 
+	/**
+	 * @inheritdoc
+	 */
 	public function rules() {
 
+		// Model Rules
 		$rules = [
-			[ [ 'classification', 'language', 'googlebot', 'searchEngine', 'ownerContent',
-				'copyright', 'expires', 'rating', 'revisitAfter' ], 'safe' ]
+			// Text Limit
+			[ [ 'language', 'googlebot', 'searchEngine', 'copyright', 'expires', 'rating', 'revisitAfter' ], 'string', 'min' => 1, 'max' => Yii::$app->core->mediumText ],
+			[ [ 'classification', 'ownerContent' ], 'string', 'min' => 1, 'max' => Yii::$app->core->largeText ]
 		];
+
+		// Trim Text
+		if( Yii::$app->core->trimFieldValue ) {
+
+			$trim[] = [ [ 'classification', 'ownerContent', 'copyright', 'expires', 'rating', 'revisitAfter' ], 'filter', 'filter' => 'trim', 'skipOnArray' => true ];
+
+			return ArrayHelper::merge( $trim, $rules );
+		}
 
 		return $rules;
 	}
@@ -74,15 +168,15 @@ class AdvancedSeo extends \cmsgears\core\common\models\forms\DataModel {
 	public function attributeLabels() {
 
 		return [
-			'classification' => 'classification',
-			'language' => 'language',
-			'googlebot' => 'googlebot',
-			'searchEngine' => 'searchEngine',
-			'ownerContent' => 'ownerContent',
-			'copyright' => 'copyright',
-			'expires' => 'expires',
-			'rating' => 'rating',
-			'revisitAfter' => 'revisitAfter'
+			'classification' => 'Classification',
+			'language' => 'Language',
+			'googlebot' => 'Googlebot',
+			'searchEngine' => 'Search Engine',
+			'ownerContent' => 'Owner Content',
+			'copyright' => 'Copyright',
+			'expires' => 'Expires',
+			'rating' => 'Rating',
+			'revisitAfter' => 'Revisit After'
 		];
 	}
 
@@ -93,5 +187,18 @@ class AdvancedSeo extends \cmsgears\core\common\models\forms\DataModel {
 	// Validators ----------------------------
 
 	// AdvancedSeo ---------------------------
+
+	public function getData() {
+
+		$data = [
+			'classification' => $this->classification, 'language' => $this->language,
+			'googlebot' => $this->googlebot, 'searchEngine' => $this->searchEngine,
+			'ownerContent' => $this->ownerContent, 'copyright' => $this->copyright,
+			'expires' => $this->expires, 'rating' => $this->rating,
+			'revisitAfter' => $this->revisitAfter
+		];
+
+		return $data;
+	}
 
 }

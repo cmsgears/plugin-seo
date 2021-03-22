@@ -40,8 +40,8 @@ class BasicSeo extends \cmsgears\core\common\models\forms\DataModel {
 	public $model;
 
 	public $name;
-	public $summary;
 	public $desc;
+	public $summary;
 	public $keywords;
 	public $robot;
 
@@ -71,15 +71,15 @@ class BasicSeo extends \cmsgears\core\common\models\forms\DataModel {
 
 							break;
 						}
-						case 'summary': {
-
-							$this->summary = $value;
-
-							break;
-						}
 						case 'desc': {
 
 							$this->desc = $value;
+
+							break;
+						}
+						case 'summary': {
+
+							$this->summary = $value;
 
 							break;
 						}
@@ -129,7 +129,7 @@ class BasicSeo extends \cmsgears\core\common\models\forms\DataModel {
 		// Trim Text
 		if( Yii::$app->core->trimFieldValue ) {
 
-			$trim[] = [ [ 'name', 'desc', 'keywords', 'robot' ], 'filter', 'filter' => 'trim', 'skipOnArray' => true ];
+			$trim[] = [ [ 'name', 'desc', 'summary', 'keywords', 'robot' ], 'filter', 'filter' => 'trim', 'skipOnArray' => true ];
 
 			return ArrayHelper::merge( $trim, $rules );
 		}
@@ -143,9 +143,9 @@ class BasicSeo extends \cmsgears\core\common\models\forms\DataModel {
 	public function attributeLabels() {
 
 		return [
-			'summary' => Yii::$app->coreMessage->getMessage( CoreGlobal::FIELD_SUMMARY ),
 			'name' => Yii::$app->cmsMessage->getMessage( CoreGlobal::FIELD_SEO_NAME ),
 			'desc' => Yii::$app->cmsMessage->getMessage( CoreGlobal::FIELD_SEO_DESCRIPTION ),
+			'summary' => Yii::$app->coreMessage->getMessage( CoreGlobal::FIELD_SUMMARY ),
 			'keywords' => Yii::$app->cmsMessage->getMessage( CoreGlobal::FIELD_SEO_KEYWORDS ),
 			'robot' => Yii::$app->cmsMessage->getMessage( CoreGlobal::FIELD_SEO_ROBOT )
 		];
@@ -162,9 +162,8 @@ class BasicSeo extends \cmsgears\core\common\models\forms\DataModel {
 	public function getData() {
 
 		$data = [
-			'name' => $this->name, 'desc' => $this->desc,
-			'keywords' => $this->keywords, 'robot' => $this->robot,
-			'summary' => $this->summary
+			'name' => $this->name, 'desc' => $this->desc, 'summary' => $this->summary,
+			'keywords' => $this->keywords, 'robot' => $this->robot
 		];
 
 		return $data;
